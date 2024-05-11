@@ -39,7 +39,7 @@ export default function Timetable(props) {
 
     function generateCalendar() {
         // Download timetable as .ics file. Python cal data is returned in the API.
-        axios.post("http://192.168.1.5:8000/api/calendar/", timetableData)
+        axios.post("https://classgrid.devclub.iitd.tech/api/calendar/", timetableData)
             .then(res => {
                 let element = document.createElement('a');
                 element.setAttribute('href', 'data:text/calendar;charset=utf-8,' + encodeURIComponent(res.data));

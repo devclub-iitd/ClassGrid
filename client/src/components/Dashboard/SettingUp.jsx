@@ -11,7 +11,7 @@ export default function SettingUp(props) {
     const setTimetable = props.setTimetable;
 
     React.useEffect(() => {
-        axios.get(`http://192.168.1.5:8000/api/timetable?kerberos=${kerberos}`)
+        axios.get(`https://classgrid.devclub.iitd.tech/api/timetable?kerberos=${kerberos}`)
             .then(res => {
                 setName(res.data.name);
                 setTimetable(res.data.courses);
