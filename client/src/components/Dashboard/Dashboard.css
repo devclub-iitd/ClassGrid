@@ -1,0 +1,303 @@
+.pre-dashboard {
+    width: 320px;
+    padding-top: 120px;
+    padding-bottom: 150px;
+    margin: auto;
+}
+
+.fetching-courses {
+    background-color: white;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 30px 20px;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.fetching-courses h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.loading-balls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.loading-ball {
+    width: 20px;
+    height: 20px;
+    background-color: #DCEED1;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+.loading-ball:nth-child(1) {
+    animation: bounce 0.5s infinite alternate;
+}
+
+.loading-ball:nth-child(2) {
+    animation: bounce 0.5s 0.1s infinite alternate;
+}
+
+.loading-ball:nth-child(3) {
+    animation: bounce 0.5s 0.2s infinite alternate;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+.course-list {
+    background-color: white;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 30px 20px;
+}
+
+.course-list h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.course-list p {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.course-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.course-list li {
+    background-color: #DCEED1;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.course-list button {
+    background-color: #EF5B5B;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dashboard {
+    padding: 3% 5%;
+    padding-top: 120px;
+}
+
+.dashboard h1 {
+    color: #475657;
+}
+
+.timetable-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: start;
+    margin-top: 30px;
+    height: 81.9vh;
+}
+
+.timetable-grid {
+    width: 70%;
+}
+
+.timetable-grid img {
+    width: 95%;
+    margin: auto;
+}
+
+.timetable-items {
+    width: 30%;
+    padding: 2% 3%;
+    background-color: white;
+    border: 1px solid #475657;
+    height: 100%;
+    overflow: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scrollbar-color: transparent;
+}
+
+.timetable-items::-webkit-scrollbar {
+    display: none;
+}
+
+.timetable-items h2 {
+    color: #475657;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.timetable-item {
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid #475657;
+}
+
+.timetable-item h3 {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.timetable-item p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #EF5B5B;
+    font-weight: 600;
+}
+
+.timetable-item p span {
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    font-weight: 400;
+}
+
+.timetable-edit-btn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background-color: #EF5B5B;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.edit-timing-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.edit-timing-inner {
+    position: relative;
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    width: 320px;
+    border-radius: 10px;
+}
+
+.edit-timing-inner h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.edit-timing-section {
+    margin-bottom: 20px;
+}
+
+.edit-timing-section h5 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+#select-tutorial,#select-lab-day {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #475657;
+    border-radius: 5px;
+}
+
+#select-tutorial:focus,#select-lab-day:focus {
+    outline: none;
+}
+
+.edit-timing-inner button {
+    background-color: #EF5B5B;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.select-lab-time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.select-lab-time-comp {
+    width: 48%;
+}
+
+.select-lab-time-comp p {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: black;
+    font-family: "Kodchasan", sans-serif;
+}
+
+.select-lab-time-comp input {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #475657;
+    border-radius: 5px;
+}
+
+.select-lab-time-comp input:focus {
+    outline: none;
+}
+
+.download-timetable-btn {
+    background-color: #EF5B5B;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+    .timetable-container {
+        flex-direction: column;
+        height: auto;
+    }
+    .timetable-grid {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .timetable-grid img {
+        width: 100%;
+    }
+    .timetable-items {
+        width: 100%;
+    }
+}

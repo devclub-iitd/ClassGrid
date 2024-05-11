@@ -1,0 +1,48 @@
+nav {
+    color: white;
+    padding: 20px 5%;
+    position: fixed;
+    background-color: #FFFBFE;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+}
+
+.navbar-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-logo a {
+    text-decoration: none;
+}
+
+.navbar-logo-class {
+    color: #EF5B5B;
+}
+
+.navbar-logo-grid {
+    color: #9984D4;
+}
+
+.navbar-devclub {
+    color: #9984D4;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.navbar-devclub a {
+    text-decoration: none;
+    color: #EF5B5B;
+}
+
+@media (max-width: 420px) {
+    .navbar-logo {
+        font-size: 1.2rem;
+    }   
+    .navbar-devclub {
+        font-size: 0.8rem;
+    }
+}
