@@ -2,12 +2,15 @@ import React from 'react'
 import './Dashboard.css'
 import EditTiming from './EditTiming';
 import axios from 'axios';
+import TimetableGrid from '../Timetable/TimetableGrid';
 
 export default function Timetable(props) {
 
     const name = props.name;
     const timetable = props.timetable;
     const [timetableData, setTimetableData] = React.useState({});
+
+    const [displayGrid, setDisplayGrid] = React.useState(false);
 
     React.useEffect(() => {
         for (let i = 0; i < timetable.length; i++) {
@@ -29,6 +32,8 @@ export default function Timetable(props) {
                 }
             }
         }
+
+        setDisplayGrid(true);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [timetable])
@@ -55,9 +60,7 @@ export default function Timetable(props) {
         <section className="dashboard">
             <h1>{name}'s Timetable</h1>
             <div className="timetable-container">
-                <div className="timetable-grid">
-                    <img src="https://via.placeholder.com/1024x720" alt="Timetable" />
-                </div>
+                {displayGrid ? <TimetableGrid timetable={timetable} timetableData={timetableData} /> : null}
                 <div className="timetable-items">
                     <h2>Your courses</h2>
                     {timetable.map((course, index) => {

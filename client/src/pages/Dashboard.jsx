@@ -12,7 +12,7 @@ export default function Dashboard(props) {
     const setProgress = props.setProgress;
 
     React.useEffect(() => {
-        setTitle("My Dashboard | ClassGrid | DevClub - IIT Delhi")
+        setTitle("My Dashboard | ClassGrid by DevClub IIT Delhi")
         setProgress(25);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
