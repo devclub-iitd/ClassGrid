@@ -1,0 +1,86 @@
+.timetable-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: white;
+    margin-right: 2%;
+    padding: 20px;
+    height: 100%;
+    border: 1px solid #475657;
+    overflow: scroll;
+}
+
+.time-headers {
+    width: 7%;
+    min-width: 50px;
+    border-collapse: collapse;
+}
+
+.time-headers tr {
+    height: 80px;
+}
+
+.time-headers tr:first-child {
+    height: 80px;
+}
+
+.time-headers tr td {
+    text-align: right;
+    padding-right: 10px;
+    font-size: 12px;
+}
+
+.timetable-grid-cells {
+    position: relative;
+    width: 93%;
+    min-width: 700px;
+    border-collapse: collapse;
+}
+
+.timetable-grid-cells tr {
+    height: 80px;
+    width: 100%;
+}
+
+.timetable-grid-cells tr:first-child {
+    height: 40px;
+}
+
+
+.timetable-grid-cells tr th {
+    width: 20%;
+}
+
+.timetable-grid-cells, .timetable-grid-cells th, .timetable-grid-cells td {
+    border: 1px solid rgba(71, 86, 87, 0.2);
+}
+
+.timetable-element {
+    position: absolute;
+    background-color: rgba(239, 91, 91, 0.2);
+    width: calc(100% / 5);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.timetable-element-left {
+    position: absolute;
+    height: 100%;
+    width: 5px;
+    top: 0;
+    left: 0;
+    border-radius: 5px 0 0 5px;
+    background-color: #ef5b5b;
+}
+
+.timetable-element h5 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+@media (max-width: 1024px) {
+    .timetable-grid {
+        height: 80vh;
+    }
+}

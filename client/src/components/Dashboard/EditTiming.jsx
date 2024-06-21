@@ -60,8 +60,8 @@ export default function EditTiming(props) {
                 <h4>Editing {data.courseCode}</h4>
                 {data.tutorial && data.tutorialTiming ? <div className="edit-timing-section">
                     <h5>Tutorial</h5>
-                    <select name="tutorial" id="select-tutorial">
-                        <option value="0" selected disabled>Not Selected</option>
+                    <select name="tutorial" id="select-tutorial" defaultValue="0">
+                        <option value="0" disabled>Not Selected</option>
                         {data.tutorialTiming.map((time, index) => {
                             return (
                                 time.start ? <option key={index} value={`${time.day} ${time.start} ${time.end}`}>{time.day} {time.start.slice(0,2)}:{time.start.slice(2,4)} - {time.end.slice(0,2)}:{time.end.slice(2,4)}</option> : null
@@ -71,8 +71,8 @@ export default function EditTiming(props) {
                 </div> : null}
                 {data.lab ? <div className="edit-timing-section">
                     <h5>Lab</h5>
-                    <select name="lab" id="select-lab-day">
-                        <option value="0" selected disabled>Select Day</option>
+                    <select name="lab" id="select-lab-day" defaultValue="0">
+                        <option value="0" disabled>Select Day</option>
                         <option value="Monday">Monday</option>
                         <option value="Tuesday">Tuesday</option>
                         <option value="Wednesday">Wednesday</option>

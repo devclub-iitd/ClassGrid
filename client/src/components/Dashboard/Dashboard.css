@@ -123,11 +123,6 @@
     width: 70%;
 }
 
-.timetable-grid img {
-    width: 95%;
-    margin: auto;
-}
-
 .timetable-items {
     width: 30%;
     padding: 2% 3%;
@@ -293,9 +288,6 @@
     .timetable-grid {
         width: 100%;
         margin-bottom: 20px;
-    }
-    .timetable-grid img {
-        width: 100%;
     }
     .timetable-items {
         width: 100%;

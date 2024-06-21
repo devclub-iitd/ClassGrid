@@ -11,7 +11,7 @@ export default function FetchingCourses(props) {
     const setCourses = props.setCourses;
 
     React.useEffect(() => {
-        axios.get(`http://192.168.1.5:8000/api/courses?kerberos=${kerberos}`)
+        axios.get(`http://localhost:8000/api/courses?kerberos=${kerberos}`)
             .then(res => {
                 setName(res.data.name);
                 setCourses(res.data.courses);
