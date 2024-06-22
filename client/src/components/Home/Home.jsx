@@ -1,6 +1,7 @@
 import React from 'react'
 import './Home.css'
 import { Link } from 'react-router-dom'
+import hero from '../../assets/hero.png'
 
 export default function HomeComp() {
     return (
@@ -18,7 +19,7 @@ export default function HomeComp() {
                     </Link>
                 </div>
                 <div className="home-hero">
-                    <img src="https://via.placeholder.com/1024x1024" alt="ClassGrid" />
+                    <img src={hero} alt="ClassGrid" />
                 </div>
             </div>
         </section>
