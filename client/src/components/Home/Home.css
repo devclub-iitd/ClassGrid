@@ -53,6 +53,9 @@
     .home-content, .home-hero {
         width: 100%;
     }
+    .home-hero {
+        margin-bottom: 10px;
+    }
     .home-content {
         order: 2;
     }

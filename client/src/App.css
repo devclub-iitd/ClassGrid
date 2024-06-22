@@ -8,6 +8,8 @@
 }
 
 body {
+    position: relative;
     background-color: #FFFBFE;
+    min-height: 100vh;
 }
 
