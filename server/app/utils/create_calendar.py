@@ -23,6 +23,7 @@ def generate_calendar(data):
                     for date in dates:
                         e = Event()
                         e.name = f"{course.upper()} - {ltp.title()}"
+                        e.location = day['room']
                         e.begin = f"2024-{date[2:]}-{date[:2]} {day['start'][:2]}:{day['start'][2:]}:00+05:30"
                         e.end = f"2024-{date[2:]}-{date[:2]} {day['end'][:2]}:{day['end'][2:]}:00+05:30"
                         e.alarms = [DisplayAlarm(trigger=timedelta(minutes=-10))]

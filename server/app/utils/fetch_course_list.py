@@ -5,6 +5,8 @@ import csv
 import requests
 from bs4 import BeautifulSoup
 
+from .get_lh import get_room_number
+
 def isKerberos(kerberos):
     if len(kerberos) == 9 and kerberos[:2].isalpha() and kerberos[3:].isdigit():
         return True
@@ -40,6 +42,10 @@ def fetchCourseList(semesterCode):
                 logs.write_log(log_file, f"ACTION: Slot {slot} created.")
             courseSlot = SlotTiming.objects.get(slot=slot)
 
+            lectureRoom, tutorialRoom, labRoom = None, None, None
+            lectureRoom = get_room_number(f"{courseCode} ")
+            tutorialRoom = get_room_number(f"{courseCode}(T")
+
             response = requests.get(url % (semesterCode, courseCode), verify=False)
             if response.status_code == 404 or lastCourse == courseCode[:6]:
                 if lastCourse == courseCode[:6]:
@@ -61,7 +67,7 @@ def fetchCourseList(semesterCode):
                 courseObj = CourseList.objects.get(semesterCode=semesterCode, courseCode=courseCode)
                 courseObj.students.clear() ; courseObj.save()
             else:
-                courseObj = CourseList.objects.create(semesterCode=semesterCode, courseCode=courseCode, totalCredits=totalCredits, creditStructure=creditStructure, courseSlot=courseSlot)
+                courseObj = CourseList.objects.create(semesterCode=semesterCode, courseCode=courseCode, totalCredits=totalCredits, creditStructure=creditStructure, courseSlot=courseSlot, lectureRoom=lectureRoom, tutorialRoom=tutorialRoom, labRoom=labRoom)
             for student in students:
                 if not isKerberos(student.text):
                     l -= 1
@@ -119,3 +125,15 @@ def createEmptyCourse(semesterCode, courseCode, creditStructure, slot):
     course = CourseList.objects.create(semesterCode=semesterCode, courseCode=courseCode, totalCredits=totalCredits, creditStructure=creditStructure, courseSlot=courseSlot)
 
     return {'status': 201, 'course_id': course.id}
+
+def fix_course_lh(semesterCode):
+    
+    log_file = logs.create_new_log_file()
+
+    courses = CourseList.objects.filter(semesterCode=semesterCode).order_by('courseCode')
+    for course in courses:
+        course.lectureRoom = get_room_number(f"{course.courseCode} ")
+        course.tutorialRoom = get_room_number(f"{course.courseCode}(T")
+        course.save()
+        logs.write_log(log_file, f"UPDATE: Course {course.courseCode} updated.")
+    return {'status': 200, 'message': 'Course locations updated.'}
