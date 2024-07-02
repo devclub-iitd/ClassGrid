@@ -26,7 +26,8 @@ export default function Timetable(props) {
                         timetableData[timetable[i].courseCode].lecture.push({
                             day: timetable[i].lectureTiming[j].day,
                             start: timetable[i].lectureTiming[j].start,
-                            end: timetable[i].lectureTiming[j].end
+                            end: timetable[i].lectureTiming[j].end,
+                            room: timetable[i].lectureRoom,
                         });
                     }
                 }

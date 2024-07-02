@@ -18,7 +18,8 @@ export default function EditTiming(props) {
                 temp.tutorial = [{
                     day: tutorial.split(" ")[0],
                     start: tutorial.split(" ")[1],
-                    end: tutorial.split(" ")[2]
+                    end: tutorial.split(" ")[2],
+                    room: data.tutorialRoom
                 }]
                 if (temp.tutorial.start >= temp.tutorial.end) {
                     temp.tutorial = null;

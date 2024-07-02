@@ -40,6 +40,7 @@ export default function TimetableElement(props) {
         }}>
             <div className="timetable-element-left"></div>
             <h5>{props.course} - {props.type}</h5>
+            <h6>{props.data.room}</h6>
         </div>
     )
 }

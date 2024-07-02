@@ -41,14 +41,14 @@ def get_user_timetable(request):
             "courseCode": course.courseCode,
             "slot": course.courseSlot.slot,
             "lecture": False,
-            "lectureEditable": False,
             "tutorial": False,
             "lab": False,
+            "lectureRoom": course.lectureRoom,
+            "tutorialRoom": course.tutorialRoom,
         }
         creditStructure = course.creditStructure.split("-")
         if float(creditStructure[0]) != 0:
             d["lecture"] = True
-            d["lectureEditable"] = True
         if float(creditStructure[1]) != 0:
             d["tutorial"] = True
         if float(creditStructure[2]) != 0:
@@ -59,7 +59,6 @@ def get_user_timetable(request):
 
         if float(creditStructure[0]) != 0 and course.courseSlot.lectureTiming:
             lT = course.courseSlot.lectureTiming.split(",")
-            d["lectureEditable"] = False
         else:
             lT = []
         day_list = list(days_map.values())
