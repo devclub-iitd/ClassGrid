@@ -1,22 +1,40 @@
 import React from 'react'
 import axios from 'axios';
 import './Dashboard.css'
+import { useMsal } from '@azure/msal-react';
+import { loginRequest } from '../../authConfig';
 
 export default function FetchingCourses(props) {
 
     const setNavigation = props.setNavigation;
     const setProgress = props.setProgress;
-    const kerberos = props.kerberos;
     const setName = props.setName;
     const setCourses = props.setCourses;
 
+    const { instance, accounts } = useMsal();
+
     React.useEffect(() => {
-        axios.get(`https://classgrid.devclub.iitd.tech/api/courses?kerberos=${kerberos}`)
-            .then(res => {
-                setName(res.data.name);
-                setCourses(res.data.courses);
-                setProgress(100);
-                setNavigation(1);
+
+        instance
+            .acquireTokenSilent({
+                ...loginRequest,
+                account: accounts[0],
+            })
+            .then((response) => {
+                axios.get(`https://classgrid.devclub.iitd.tech/api/courses/`, {
+                    headers: {
+                        Authorization: `Bearer ${response.accessToken}`
+                    }
+                })
+                .then(res => {
+                    setName(res.data.name);
+                    setCourses(res.data.courses);
+                    setProgress(100);
+                    setNavigation(1);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
             })
 
         // eslint-disable-next-line react-hooks/exhaustive-deps

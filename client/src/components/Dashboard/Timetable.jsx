@@ -4,6 +4,9 @@ import EditTiming from './EditTiming';
 import axios from 'axios';
 import TimetableGrid from '../Timetable/TimetableGrid';
 
+import { useMsal } from '@azure/msal-react';
+import { loginRequest } from '../../authConfig';
+
 export default function Timetable(props) {
 
     const name = props.name;
@@ -11,6 +14,8 @@ export default function Timetable(props) {
     const [timetableData, setTimetableData] = React.useState({});
 
     const [displayGrid, setDisplayGrid] = React.useState(false);
+
+    const { instance, accounts } = useMsal();
 
     React.useEffect(() => {
         for (let i = 0; i < timetable.length; i++) {
@@ -44,22 +49,43 @@ export default function Timetable(props) {
     }
 
     function generateCalendar() {
-        // Download timetable as .ics file. Python cal data is returned in the API.
-        axios.post("https://classgrid.devclub.iitd.tech/api/calendar/", timetableData)
-            .then(res => {
-                let element = document.createElement('a');
-                element.setAttribute('href', 'data:text/calendar;charset=utf-8,' + encodeURIComponent(res.data));
-                element.setAttribute('download', 'Timetable.ics');
-                element.style.display = 'none';
-                document.body.appendChild(element);
-                element.click();
-                document.body.removeChild(element);
+        
+        instance
+            .acquireTokenSilent({
+                ...loginRequest,
+                account: accounts[0],
             })
+            .then((response) => {
+                axios.post("https://classgrid.devclub.iitd.tech/api/calendar/", timetableData, {
+                    headers: {
+                        Authorization: `Bearer ${response.accessToken}`,
+                    }
+                })
+                .then(res => {
+                    let element = document.createElement('a');
+                    element.setAttribute('href', 'data:text/calendar;charset=utf-8,' + encodeURIComponent(res.data));
+                    element.setAttribute('download', 'Timetable.ics');
+                    element.style.display = 'none';
+                    document.body.appendChild(element);
+                    element.click();
+                    document.body.removeChild(element);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            })
+    }
+
+    const signout = () => {
+        instance.logoutRedirect({
+            postLogoutRedirectUri: "/",
+        });
     }
 
     return (
         <section className="dashboard">
             <h1>{name}'s Timetable</h1>
+            <p className="logout">Not you? <span onClick={signout}>Sign out</span></p>
             <div className="timetable-container">
                 {displayGrid ? <TimetableGrid timetable={timetable} timetableData={timetableData} /> : null}
                 <div className="timetable-items">
