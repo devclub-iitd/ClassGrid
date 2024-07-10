@@ -4,3 +4,6 @@ env/
 logs/
 
 .env*
+
+*.csv
+*.pdf
