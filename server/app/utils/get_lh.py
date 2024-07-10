@@ -2,7 +2,7 @@ import PyPDF2
 
 reader = PyPDF2.PdfReader("/Users/shashank/Shashank/GitHub/DevClub/ClassGrid/server/app/utils/Room Allotment.pdf")
 
-def get_table_number(page_text, course_code):
+def get_table_number(page_text, course_code, _type):
     items = page_text.split('\n')[1:]
     checkpoint = -1
     for i in items:
@@ -25,11 +25,20 @@ def get_rooms_on_page(page):
                 ret = (room_no, None)
     return ret
 
-def get_room_number(course_code):
+def get_room_number(course_code, _type):
     for page in reader.pages:
         rooms_on_page = get_rooms_on_page(page)
         text = page.extract_text()
-        if course_code.upper() in text:
-            tn = get_table_number(text, course_code)
-            return rooms_on_page[tn]
+        if _type == "L":
+            if course_code.upper() in text:
+                _text = text.replace(f"{course_code.upper()}(T", f"")
+                if course_code.upper() in _text:
+                    tn = get_table_number(_text, course_code, _type)
+                    return rooms_on_page[tn]
+                else:
+                    continue
+        elif _type == "T":
+            if f"{course_code.upper()}(T" in text:
+                tn = get_table_number(text, course_code, _type)
+                return rooms_on_page[tn]
     return None
