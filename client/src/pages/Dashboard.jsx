@@ -1,13 +1,14 @@
 import React from 'react'
 import FetchingCourses from '../components/Dashboard/FetchingCourses';
 import Courses from '../components/Dashboard/Courses';
-import { useParams } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import Timetable from '../components/Dashboard/Timetable';
 import SettingUp from '../components/Dashboard/SettingUp';
 
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
+
 export default function Dashboard(props) {
 
-    const kerberos = useParams().kerberos;
     const setTitle = props.setTitle;
     const setProgress = props.setProgress;
 
@@ -25,10 +26,16 @@ export default function Dashboard(props) {
 
     return (
         <>
-            {navigation === 0 ? <FetchingCourses kerberos={kerberos} setName={setName} setCourses={setCourses} setNavigation={setNavigation} setProgress={setProgress} /> : null}
-            {navigation === 1 ? <Courses name={name} courses={courses} setNavigation={setNavigation} /> : null}
-            {navigation === 2 ? <SettingUp kerberos={kerberos} setName={setName} setTimetable={setTimetable} setNavigation={setNavigation} setProgress={setProgress} /> : null}
-            {navigation === 3 ? <Timetable name={name} timetable={timetable} setNavigation={setNavigation} /> : null}
+            <AuthenticatedTemplate>
+                {navigation === 0 ? <FetchingCourses setName={setName} setCourses={setCourses} setNavigation={setNavigation} setProgress={setProgress} /> : null}
+                {navigation === 1 ? <Courses name={name} courses={courses} setNavigation={setNavigation} /> : null}
+                {navigation === 2 ? <SettingUp setName={setName} setTimetable={setTimetable} setNavigation={setNavigation} setProgress={setProgress} /> : null}
+                {navigation === 3 ? <Timetable name={name} timetable={timetable} setNavigation={setNavigation} /> : null}
+            </AuthenticatedTemplate>
+
+            <UnauthenticatedTemplate>
+                <Navigate to="/" />
+            </UnauthenticatedTemplate>
         </>
     )
 }

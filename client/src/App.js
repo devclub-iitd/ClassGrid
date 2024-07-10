@@ -8,7 +8,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 
 import Home from './pages/Home';
-import Signin from './pages/Signin';
+// import Signin from './pages/Signin';
 import Dashboard from './pages/Dashboard';
 
 function App() {
@@ -34,8 +34,7 @@ function App() {
             <main>
                 <Routes>
                     <Route path="/" element={<Home setProgress={setProgress} setTitle={setTitle} />} />
-                    <Route path="/signin" element={<Signin setProgress={setProgress} setTitle={setTitle} />} />
-                    <Route path="/dashboard/:kerberos" element={<Dashboard setProgress={setProgress} setTitle={setTitle} />} />
+                    <Route path="/dashboard" element={<Dashboard setProgress={setProgress} setTitle={setTitle} />} />
                 </Routes>
             </main>
             <footer>

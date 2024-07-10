@@ -1,11 +1,20 @@
 import React from 'react'
 import './Dashboard.css'
+import { useMsal } from '@azure/msal-react';
 
 export default function Courses(props) {
 
     const name = props.name;
     const courses = props.courses;
     const setNavigation = props.setNavigation;
+
+    const { instance } = useMsal();
+
+    const signout = () => {
+        instance.logoutRedirect({
+            postLogoutRedirectUri: "/",
+        });
+    }
 
     return (
         <section className='pre-dashboard'>
@@ -20,6 +29,7 @@ export default function Courses(props) {
                 <button onClick={() => setNavigation(2)}>
                     Continue
                 </button>
+                <p className="logout">Not you? <span onClick={signout}>Sign out</span></p>
             </div>
         </section>
     )

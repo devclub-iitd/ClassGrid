@@ -7,8 +7,7 @@ from .utils import create_calendar
 
 @api_view(["GET"])
 def get_user_courses(request):
-    # import time ; time.sleep(1)
-    kerberos = request.GET.get("kerberos")
+    kerberos = request.kerberos
     if not kerberos:
         return Response("Kerberos not provided!", status=status.HTTP_400_BAD_REQUEST)
     if not UserData.objects.filter(kerberos=kerberos).exists():
@@ -23,8 +22,7 @@ def get_user_courses(request):
 
 @api_view(["GET"])
 def get_user_timetable(request):
-
-    kerberos = request.GET.get("kerberos")
+    kerberos = request.kerberos
     if not kerberos:
         return Response("Kerberos not provided!", status=status.HTTP_400_BAD_REQUEST)
     if not UserData.objects.filter(kerberos=kerberos).exists():
@@ -99,6 +97,11 @@ def get_user_timetable(request):
 
 @api_view(["POST"])
 def generate_calendar(request):
+    kerberos = request.kerberos
+    if not kerberos:
+        return Response("Kerberos not provided!", status=status.HTTP_400_BAD_REQUEST)
+    if not UserData.objects.filter(kerberos=kerberos).exists():
+        return Response("User not found!", status=status.HTTP_404_NOT_FOUND)
     data = request.data
     cal = create_calendar.generate_calendar(data)
     return Response(cal.serialize(), status=status.HTTP_200_OK)
