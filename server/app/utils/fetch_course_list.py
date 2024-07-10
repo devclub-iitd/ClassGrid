@@ -43,8 +43,8 @@ def fetchCourseList(semesterCode):
             courseSlot = SlotTiming.objects.get(slot=slot)
 
             lectureRoom, tutorialRoom, labRoom = None, None, None
-            lectureRoom = get_room_number(f"{courseCode} ")
-            tutorialRoom = get_room_number(f"{courseCode}(T")
+            lectureRoom = get_room_number(f"{courseCode}", "L")
+            tutorialRoom = get_room_number(f"{courseCode}", "T")
 
             response = requests.get(url % (semesterCode, courseCode), verify=False)
             if response.status_code == 404 or lastCourse == courseCode[:6]:
@@ -132,8 +132,8 @@ def fix_course_lh(semesterCode):
 
     courses = CourseList.objects.filter(semesterCode=semesterCode).order_by('courseCode')
     for course in courses:
-        course.lectureRoom = get_room_number(f"{course.courseCode} ")
-        course.tutorialRoom = get_room_number(f"{course.courseCode}(T")
+        course.lectureRoom = get_room_number(f"{course.courseCode}", "L")
+        course.tutorialRoom = get_room_number(f"{course.courseCode}", "T")
         course.save()
         logs.write_log(log_file, f"UPDATE: Course {course.courseCode} updated.")
     return {'status': 200, 'message': 'Course locations updated.'}
