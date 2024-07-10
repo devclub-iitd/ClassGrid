@@ -15,7 +15,7 @@ export const msalConfig = {
     auth: {
         clientId: "d8ed92a2-5bdf-43bd-a5e4-05523b06ede5",
         authority: "https://login.microsoftonline.com/csciitd.onmicrosoft.com",
-        redirectUri: "http://localhost:3000",
+        redirectUri: "https://classgrid.devclub.iitd.tech",
     },
     cache: {
         cacheLocation: "sessionStorage", // This configures where your cache will be stored
