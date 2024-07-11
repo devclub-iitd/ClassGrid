@@ -31,6 +31,10 @@
     margin-top: 5px;
 }
 
+.home-content p a {
+    color: #9984D4;
+}
+
 .home-content button {
     background-color: #EF5B5B;
     color: white;
