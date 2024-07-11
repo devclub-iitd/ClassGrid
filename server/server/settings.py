@@ -10,7 +10,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['classgrid-prod.devclub.iitd.tech', 'classgrid.devclub.in']
+ALLOWED_HOSTS = ['classgrid.devclub.in']
 
 INSTALLED_APPS = [
     # Default Django apps
@@ -110,8 +110,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-    'http://localhost:8000',
-    'http://classgrid.devclub.iitd.tech',
-    'https://classgrid.devclub.iitd.tech',
+    'http://classgrid.devclub.in',
+    'https://classgrid.devclub.in',
 ]
