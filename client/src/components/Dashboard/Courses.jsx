@@ -20,7 +20,7 @@ export default function Courses(props) {
         <section className='pre-dashboard'>
             <div className="course-list">
                 <h1>Hi {name} 👋</h1>
-                <p>Please verify your courses for Winter Semester, 2023-24</p>
+                <p>Please verify your courses for Fall Semester, 2024-25</p>
                 <ul>
                     {courses.map((course, index) => {
                         return <li key={index}>{course}</li>
