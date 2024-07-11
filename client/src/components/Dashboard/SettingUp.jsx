@@ -21,7 +21,7 @@ export default function SettingUp(props) {
                 account: accounts[0],
             })
             .then((response) => {
-                axios.get(`https://classgrid.devclub.iitd.tech/api/timetable/`, {
+                axios.get(`/api/timetable/`, {
                     headers: {
                         Authorization: `Bearer ${response.accessToken}`,
                     }
