@@ -26,6 +26,11 @@
     margin-bottom: 1em;
 }
 
+.home-content p ul {
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
 .home-content button {
     background-color: #EF5B5B;
     color: white;

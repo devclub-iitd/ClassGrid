@@ -1,7 +1,7 @@
 import React from 'react'
 import './Home.css'
 import hero from '../../assets/hero.png'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from '../../authConfig';
@@ -32,7 +32,15 @@ export default function HomeComp() {
                     <h2>
                         Your Semester Timetable in 2 Minutes.
                     </h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime corporis et, magni laboriosam perferendis dicta deserunt adipisci placeat eveniet laudantium?</p>
+                    <p>
+                        With ClassGrid, you can prepare the timetable of your entire semester in 2 minutes. Key features include:
+                        <ul>
+                            <li>Accounts for holidays and substitution days</li>
+                            <li>Customise Tutorials and Labs as per your choice</li>
+                            <li>T-10 reminders and Room Numbers for Lectures and Tutorials</li>
+                        </ul>    
+                    </p>
+                    <p>Please note that ClassGrid may not behave correctly for UG First Year courses. For any other issues you face while using ClassGrid, fill out <Link to="https://forms.gle/soGbPnr8toBRQAUz7" target='_blank'>this form</Link>.</p>
                     <button onClick={handleLogin}>
                         Get Started
                     </button>

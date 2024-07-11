@@ -7,3 +7,9 @@
     text-align: center;
     z-index: 100;
 }
+
+.footer p {
+    color: #475657;
+    font-size: 0.8em;
+    margin-bottom: 5px;
+}
