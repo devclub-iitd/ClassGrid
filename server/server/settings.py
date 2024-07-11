@@ -10,7 +10,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['classgrid.devclub.iitd.tech']
+ALLOWED_HOSTS = ['classgrid-prod.devclub.iitd.tech', 'classgrid.devclub.in']
 
 INSTALLED_APPS = [
     # Default Django apps
