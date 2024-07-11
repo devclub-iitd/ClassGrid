@@ -3,6 +3,16 @@ from .models import *
 
 # Register your models here.
 
-admin.site.register(UserData)
+class UserDataAdmin(admin.ModelAdmin):
+    list_display = ('kerberos', 'name')
+    search_fields = ('kerberos', 'name')
+    ordering = ('department', 'group', 'kerberos')
+
+class CourseListAdmin(admin.ModelAdmin):
+    list_display = ('semesterCode', 'courseCode', 'courseSlot', 'lectureRoom', 'tutorialRoom')
+    search_fields = ('courseCode',)
+    ordering = ('-semesterCode', 'courseCode', 'courseSlot')
+
+admin.site.register(UserData, UserDataAdmin)
 admin.site.register(SlotTiming)
-admin.site.register(CourseList)
+admin.site.register(CourseList, CourseListAdmin)
