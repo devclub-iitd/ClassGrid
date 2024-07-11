@@ -56,7 +56,7 @@ export default function Timetable(props) {
                 account: accounts[0],
             })
             .then((response) => {
-                axios.post("https://classgrid.devclub.iitd.tech/api/calendar/", timetableData, {
+                axios.post("/api/calendar/", timetableData, {
                     headers: {
                         Authorization: `Bearer ${response.accessToken}`,
                     }

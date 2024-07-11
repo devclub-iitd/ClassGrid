@@ -21,7 +21,7 @@ export default function FetchingCourses(props) {
                 account: accounts[0],
             })
             .then((response) => {
-                axios.get(`https://classgrid.devclub.iitd.tech/api/courses/`, {
+                axios.get(`/api/courses/`, {
                     headers: {
                         Authorization: `Bearer ${response.accessToken}`
                     }
