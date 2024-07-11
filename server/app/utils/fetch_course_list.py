@@ -18,7 +18,7 @@ def fetchCourseList(semesterCode):
 
     url = "https://ldapweb.iitd.ac.in/LDAP/courses/%s-%s.shtml"
     
-    with open("/Users/shashank/Shashank/GitHub/DevClub/ClassGrid/server/app/utils/Courses_Offered.csv", "r") as file:
+    with open("/home/ubuntu/ClassGrid/server/app/utils/Courses_Offered.csv", "r") as file:
 
         reader = csv.reader(file)
         next(reader)

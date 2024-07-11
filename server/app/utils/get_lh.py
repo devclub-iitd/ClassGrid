@@ -1,6 +1,6 @@
 import PyPDF2
 
-reader = PyPDF2.PdfReader("/Users/shashank/Shashank/GitHub/DevClub/ClassGrid/server/app/utils/Room Allotment.pdf")
+reader = PyPDF2.PdfReader("/home/ubuntu/ClassGrid/server/app/utils/Room Allotment.pdf")
 
 def get_table_number(page_text, course_code, _type):
     items = page_text.split('\n')[1:]
