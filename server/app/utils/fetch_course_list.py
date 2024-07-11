@@ -43,8 +43,6 @@ def fetchCourseList(semesterCode):
             courseSlot = SlotTiming.objects.get(slot=slot)
 
             lectureRoom, tutorialRoom, labRoom = None, None, None
-            lectureRoom = get_room_number(f"{courseCode}", "L")
-            tutorialRoom = get_room_number(f"{courseCode}", "T")
 
             response = requests.get(url % (semesterCode, courseCode), verify=False)
             if response.status_code == 404 or lastCourse == courseCode[:6]:
@@ -67,6 +65,8 @@ def fetchCourseList(semesterCode):
                 courseObj = CourseList.objects.get(semesterCode=semesterCode, courseCode=courseCode)
                 courseObj.students.clear() ; courseObj.save()
             else:
+                lectureRoom = get_room_number(f"{courseCode}", "L")
+                tutorialRoom = get_room_number(f"{courseCode}", "T")
                 courseObj = CourseList.objects.create(semesterCode=semesterCode, courseCode=courseCode, totalCredits=totalCredits, creditStructure=creditStructure, courseSlot=courseSlot, lectureRoom=lectureRoom, tutorialRoom=tutorialRoom, labRoom=labRoom)
             for student in students:
                 if not isKerberos(student.text):
@@ -130,7 +130,7 @@ def fix_course_lh(semesterCode):
     
     log_file = logs.create_new_log_file()
 
-    courses = CourseList.objects.filter(semesterCode=semesterCode).order_by('courseCode')
+    courses = CourseList.objects.filter(semesterCode=semesterCode, overrideRoomChange=False).order_by('courseCode')
     for course in courses:
         course.lectureRoom = get_room_number(f"{course.courseCode}", "L")
         course.tutorialRoom = get_room_number(f"{course.courseCode}", "T")
