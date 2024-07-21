@@ -20,7 +20,7 @@ export default function Courses(props) {
         <section className='pre-dashboard'>
             <div className="course-list">
                 <h1>Hi {name} 👋</h1>
-                <p>Please verify your courses for Fall Semester, 2024-25</p>
+                <p>Please verify your courses for Fall Semester, 2024-25. Kindly note that it may take upto 24 hours to update courses added/removed during the add/drop period.</p>
                 <ul>
                     {courses.map((course, index) => {
                         return <li key={index}>{course}</li>
