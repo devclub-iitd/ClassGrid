@@ -60,7 +60,7 @@ def run():
         
         if lh_update_needed:
             print("LH update is needed.")
-            fix_course_lh()
+            fix_course_lh("2401")
 
         print("Update complete.")
 
