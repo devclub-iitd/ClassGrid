@@ -54,13 +54,13 @@ def run():
         if course_update_needed:
             print("Course update is needed.")
             print("Refreshing user data.")
-            # fetchUserData()
+            fetchUserData()
             print("Refreshing course data.")
-            # fetchCourseList("2401")
+            fetchCourseList("2401")
         
         if lh_update_needed:
             print("LH update is needed.")
-            # fix_course_lh()
+            fix_course_lh()
 
         print("Update complete.")
 
