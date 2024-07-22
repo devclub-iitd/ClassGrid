@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 from .fetch_users import fetchUserData
 from .fetch_course_list import fetchCourseList, fix_course_lh
 
+requests.packages.urllib3.disable_warnings()
+
 def check_room_allotment(curr_room_allotment):
     class_schedule_url = "https://timetable.iitd.ac.in/class-schedule"
     response = requests.get(class_schedule_url, verify=False)
