@@ -26,7 +26,7 @@ def get_rooms_on_page(page):
     return ret
 
 def get_room_number(course_code, _type):
-    for page in reader.pages:
+    for page in reader.pages[2:]:
         rooms_on_page = get_rooms_on_page(page)
         text = page.extract_text()
         if _type == "L":
