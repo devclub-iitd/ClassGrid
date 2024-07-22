@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 from .fetch_users import fetchUserData
 from .fetch_course_list import fetchCourseList, fix_course_lh
 
+requests.packages.urllib3.disable_warnings()
+
 def check_room_allotment(curr_room_allotment):
     class_schedule_url = "https://timetable.iitd.ac.in/class-schedule"
     response = requests.get(class_schedule_url, verify=False)
@@ -52,13 +54,13 @@ def run():
         if course_update_needed:
             print("Course update is needed.")
             print("Refreshing user data.")
-            fetchUserData()
+            # fetchUserData()
             print("Refreshing course data.")
-            fetchCourseList("2401")
+            # fetchCourseList("2401")
         
         if lh_update_needed:
             print("LH update is needed.")
-            fix_course_lh()
+            # fix_course_lh()
 
         print("Update complete.")
 
