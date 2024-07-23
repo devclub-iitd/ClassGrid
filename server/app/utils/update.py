@@ -24,7 +24,7 @@ def check_room_allotment(curr_room_allotment):
         return True, room_allotment.get('href')
     
 def check_course_update(last_course_update):
-    course_list_url = "https://ldapweb.iitd.ac.in/LDAP/"
+    course_list_url = "https://ldapweb.iitd.ac.in/LDAP/courses/"
     response = requests.get(course_list_url, verify=False)
     if response.status_code != 200:
         print("VPN not connected.")
@@ -32,7 +32,7 @@ def check_course_update(last_course_update):
     soup = BeautifulSoup(response.text, "html.parser")
     links = soup.find_all("tr")
     for l in links:
-        if 'courses/' in str(l):
+        if '2401-' in str(l):
             course_update = l
             break
     course_update = course_update.find_all("td", attrs={'align' : 'right'})[0].text
