@@ -11,7 +11,7 @@ export default function FullTimetable(props) {
     const setProgress = props.setProgress;
 
     React.useEffect(() => {
-        setTitle("Full Timetable | ClassGrid by DevClub IIT Delhi")
+        setTitle("My Timetable | ClassGrid by DevClub IIT Delhi")
         setProgress(25);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
