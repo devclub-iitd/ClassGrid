@@ -19,7 +19,7 @@ export default function Dashboard(props) {
     return (
         <>
             <AuthenticatedTemplate>
-                <DashboardComp />
+                <DashboardComp setProgress={setProgress} />
             </AuthenticatedTemplate>
 
             <UnauthenticatedTemplate>
