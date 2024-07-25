@@ -32,9 +32,9 @@ class CourseList(models.Model):
     totalCredits = models.FloatField()
     creditStructure = models.CharField(max_length=100) # Format: "L-T-P" where L, T, P are floats.
     courseSlot = models.ForeignKey(SlotTiming, on_delete=models.CASCADE, related_name="course_slot")
-    lectureRoom = models.CharField(max_length=10, blank=True, null=True)
-    tutorialRoom = models.CharField(max_length=10, blank=True, null=True)
-    labRoom = models.CharField(max_length=10, blank=True, null=True)
+    lectureRoom = models.CharField(max_length=50, blank=True, null=True)
+    tutorialRoom = models.CharField(max_length=50, blank=True, null=True)
+    labRoom = models.CharField(max_length=50, blank=True, null=True)
     overrideRoomChange = models.BooleanField(default=False)
     students = models.ManyToManyField(UserData, blank=True, related_name="user_courses")
 

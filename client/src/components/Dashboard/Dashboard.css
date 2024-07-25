@@ -1,325 +1,212 @@
-.pre-dashboard {
-    width: max(320px, 35%);
+.m-dashboard {
+    display: flex;
+    justify-content: space-between;
+    padding: 5%;
     padding-top: 120px;
-    padding-bottom: 150px;
-    margin: auto;
+    padding-bottom: 120px;
 }
 
-.pre-dashboard .logout, .pre-dashboard .logout span {
-    font-family: Arial, Helvetica, sans-serif;
+.live-course {
+    width: 45%;
+}
+
+.live-course-heading {
+    display: flex;
+    align-items: center;
+}
+
+.live-course-heading-dot {
+    position: relative;
+    height: 30px;
+    width: 30px;
+    background-color: #EF5B5B;
+    border-radius: 15px;
+    margin-right: 10px;
+    animation: blink-live 2s infinite;
+}
+
+.live-course-heading-dot-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 23px;
+    width: 23px;
+    background-color: #EF5B5B;
+    border: 4px solid white;
+    border-radius: 15px;
+}
+
+@keyframes blink-live {
+    0% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.live-course-heading h2 {
+    font-size: 30px;
+    font-weight: 600;
+    color: #475657;
+}
+
+.live-course-body {
+    position: relative;
     margin-top: 20px;
-    font-size: 14px;
-    color: rgba(71, 86, 87, 0.6);
-    margin-bottom: 0;
+    background-color: rgba(220, 238, 209, 0.5);
+    padding: 20px;
+    border-radius: 10px;
 }
 
-.pre-dashboard .logout span {
-    text-decoration: underline;
+.live-course-body h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #475657;
+    margin-bottom: 5px;
+}
+
+.live-course-body p {
+    font-size: 18px;
+    color: #475657;
+}
+
+.live-course-body-room {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #9984D4;
+    color: white !important;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.live-course-footer {
+    margin-top: 20px;
+}
+
+.live-course-footer button {
+    background-color: transparent;
     color: #EF5B5B;
+    padding: 10px 20px;
+    border: 1px solid #EF5B5B;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.live-course-footer button:hover {
+    background-color: #EF5B5B;
+    color: white;
+}
+
+.live-course-footer p {
+    font-size: 16px;
+    color: #475657;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.live-course-footer p a {
+    color: #EF5B5B;
+    text-decoration: none;
+}
+
+.live-course-footer span {
+    font-size: 16px;
+    color: #475657;
+}
+
+.live-course-footer span span {
+    color: #EF5B5B;
+    text-decoration: none;
     cursor: pointer;
 }
 
-
-.fetching-courses {
+.live-free-lh {
+    width: 45%;
+    padding: 20px;
     background-color: white;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    padding: 30px 20px;
-    min-height: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    border: 1px solid #475657;
+    height: max-content;
 }
 
-.fetching-courses h1 {
+.live-free-lh-heading {
     font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 20px;
+    font-weight: 500;
+    color: #475657;
+    line-height: 150%;
+}
+
+.live-free-lh-rooms {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    margin-top: 20px;
+}
+
+.live-free-lh-room {
+    background-color: #9984D4;
+    padding: 10px;
+    border-radius: 10px;
     text-align: center;
 }
 
-.loading-balls {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.loading-ball {
-    width: 20px;
-    height: 20px;
-    background-color: #DCEED1;
-    border-radius: 50%;
-    margin: 0 5px;
-}
-
-.loading-ball:nth-child(1) {
-    animation: bounce 0.5s infinite alternate;
-}
-
-.loading-ball:nth-child(2) {
-    animation: bounce 0.5s 0.1s infinite alternate;
-}
-
-.loading-ball:nth-child(3) {
-    animation: bounce 0.5s 0.2s infinite alternate;
-}
-
-@keyframes bounce {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-10px);
-    }
-}
-
-.course-list {
-    background-color: white;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    padding: 30px 20px;
-}
-
-.course-list h1 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.course-list p {
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 10px;
-    line-height: 1.5;
-    text-align: justify;
-}
-
-.course-list ul {
-    list-style-type: none;
-    padding: 0;
-    margin-bottom: 20px;
-}
-
-.course-list li {
-    background-color: #DCEED1;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-.course-list button {
-    background-color: #EF5B5B;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.dashboard {
-    padding: 3% 5%;
-    padding-top: 120px;
-    padding-bottom: 100px;
-}
-
-.dashboard h1 {
-    color: #475657;
-}
-
-.dashboard .logout, .dashboard .logout span {
-    font-family: Arial, Helvetica, sans-serif;
-    margin-top: 5px;
-    color: rgba(71, 86, 87, 0.6);
-}
-
-.dashboard .logout span {
-    text-decoration: underline;
-    color: #EF5B5B;
-    cursor: pointer;
-}
-
-.timetable-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: start;
-    margin-top: 30px;
-    height: 81.9vh;
-}
-
-.timetable-grid {
-    width: 70%;
-}
-
-.timetable-items {
-    width: 30%;
-    padding: 2% 3%;
-    background-color: white;
-    border: 1px solid #475657;
-    height: 100%;
-    overflow: scroll;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    scrollbar-color: transparent;
-}
-
-.timetable-items::-webkit-scrollbar {
-    display: none;
-}
-
-.timetable-items h2 {
-    color: #475657;
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.timetable-item {
-    position: relative;
-    padding: 10px 0;
-    border-bottom: 1px solid #475657;
-}
-
-.timetable-item h3 {
-    font-family: 'Courier New', Courier, monospace;
-}
-
-.timetable-item p {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    color: #EF5B5B;
-    font-weight: 600;
-}
-
-.timetable-item p span {
-    font-family: 'Courier New', Courier, monospace;
-    color: black;
-    font-weight: 400;
-}
-
-.timetable-edit-btn {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    background-color: #EF5B5B;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.edit-timing-modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.edit-timing-inner {
-    position: relative;
-    background-color: white;
-    margin: 10% auto;
-    padding: 20px;
-    width: 320px;
-    border-radius: 10px;
-}
-
-.edit-timing-inner h4 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.edit-timing-section {
-    margin-bottom: 20px;
-}
-
-.edit-timing-section h5 {
+.live-free-lh-room p {
     font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-#select-tutorial,#select-lab-day {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #475657;
-    border-radius: 5px;
-}
-
-#select-tutorial:focus,#select-lab-day:focus {
-    outline: none;
-}
-
-.edit-timing-inner button {
-    background-color: #EF5B5B;
     color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    font-weight: 600;
 }
 
-.select-lab-time {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.live-free-lh-unavail {
+    font-size: 16px;
     margin-top: 10px;
+    line-height: 150%;
 }
 
-.select-lab-time-comp {
-    width: 48%;
-}
-
-.select-lab-time-comp p {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: black;
-    font-family: "Kodchasan", sans-serif;
-}
-
-.select-lab-time-comp input {
-    width: 90%;
-    padding: 10px;
-    border: 1px solid #475657;
-    border-radius: 5px;
-}
-
-.select-lab-time-comp input:focus {
-    outline: none;
-}
-
-.download-timetable-btn {
-    background-color: #EF5B5B;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-@media (max-width: 1024px) {
-    .timetable-container {
-        flex-direction: column;
-        height: auto;
+@media (max-width: 1200px) {
+    .live-free-lh-rooms {
+        grid-template-columns: repeat(3, 1fr);
     }
-    .timetable-grid {
+}
+
+@media (max-width: 900px) {
+    .live-free-lh-rooms {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .m-dashboard {
+        flex-direction: column;
+    }
+    .live-course, .live-free-lh {
         width: 100%;
+    }
+    .live-course {
         margin-bottom: 20px;
     }
-    .timetable-items {
-        width: 100%;
+    .live-free-lh-rooms {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .live-free-lh-rooms {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 400px) {
+    .live-free-lh-rooms {
+        grid-template-columns: repeat(2, 1fr);
     }
 }

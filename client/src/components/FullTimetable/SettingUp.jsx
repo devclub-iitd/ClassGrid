@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-import './Dashboard.css'
+import './FullTimetable.css'
 import { useMsal } from '@azure/msal-react';
 import { loginRequest } from '../../authConfig';
 
@@ -30,7 +30,7 @@ export default function SettingUp(props) {
                     setName(res.data.name);
                     setTimetable(res.data.courses);
                     setProgress(100);
-                    setNavigation(3);
+                    setNavigation(1);
                 })
                 .catch(err => {
                     console.log(err);
