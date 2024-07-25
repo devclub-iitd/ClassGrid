@@ -5,8 +5,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useMsal } from '@azure/msal-react';
 import { loginRequest } from '../../authConfig';
 
-export default function Dashboard() {
+export default function Dashboard(props) {
 
+    const setProgress = props.setProgress;
     const navigate = useNavigate();
     const { instance, accounts } = useMsal();
 
@@ -31,6 +32,7 @@ export default function Dashboard() {
                         setName(res.data.name);
                         setFreeLh(res.data.free_lh);
                         setLiveCourse(res.data.live_course);
+                        setProgress(100);
                     })
             })
 
