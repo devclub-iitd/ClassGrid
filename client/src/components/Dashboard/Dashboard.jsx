@@ -22,7 +22,7 @@ export default function Dashboard() {
                 account: accounts[0],
             })
             .then((response) => {
-                axios.get(`http://localhost:8000/api/live/`, {
+                axios.get(`/api/live/`, {
                     headers: {
                         Authorization: `Bearer ${response.accessToken}`,
                     }
