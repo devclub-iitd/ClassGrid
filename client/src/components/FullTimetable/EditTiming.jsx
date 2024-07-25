@@ -1,5 +1,5 @@
 import React from 'react'
-import './Dashboard.css'
+import './FullTimetable.css'
 
 export default function EditTiming(props) {
 

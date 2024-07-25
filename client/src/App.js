@@ -8,7 +8,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 
 import Home from './pages/Home';
-// import Signin from './pages/Signin';
+import FullTimetable from './pages/FullTimetable';
 import Dashboard from './pages/Dashboard';
 
 function App() {
@@ -35,6 +35,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home setProgress={setProgress} setTitle={setTitle} />} />
                     <Route path="/dashboard" element={<Dashboard setProgress={setProgress} setTitle={setTitle} />} />
+                    <Route path="/timetable" element={<FullTimetable setProgress={setProgress} setTitle={setTitle} />} />
                 </Routes>
             </main>
             <footer>

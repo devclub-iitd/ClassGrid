@@ -63,6 +63,7 @@ def fetchCourseList(semesterCode):
             l = len(students)
             if CourseList.objects.filter(semesterCode=semesterCode, courseCode=courseCode).exists():
                 courseObj = CourseList.objects.get(semesterCode=semesterCode, courseCode=courseCode)
+                courseObj.courseSlot = courseSlot
                 courseObj.students.clear() ; courseObj.save()
             else:
                 lectureRoom = get_room_number(f"{courseCode}", "L")
