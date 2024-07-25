@@ -1,5 +1,5 @@
 import React from 'react'
-import './Dashboard.css'
+import './FullTimetable.css'
 import EditTiming from './EditTiming';
 import axios from 'axios';
 import TimetableGrid from '../Timetable/TimetableGrid';

@@ -1,16 +1,16 @@
 import React from 'react'
 import axios from 'axios';
-import './Dashboard.css'
+import './FullTimetable.css'
 import { useMsal } from '@azure/msal-react';
 import { loginRequest } from '../../authConfig';
 
-export default function FetchingCourses(props) {
+export default function SettingUp(props) {
 
     const setNavigation = props.setNavigation;
     const setProgress = props.setProgress;
     const setName = props.setName;
-    const setCourses = props.setCourses;
-
+    const setTimetable = props.setTimetable;
+    
     const { instance, accounts } = useMsal();
 
     React.useEffect(() => {
@@ -21,14 +21,14 @@ export default function FetchingCourses(props) {
                 account: accounts[0],
             })
             .then((response) => {
-                axios.get(`http://localhost:8000/api/courses/`, {
+                axios.get(`http://localhost:8000/api/timetable/`, {
                     headers: {
-                        Authorization: `Bearer ${response.accessToken}`
+                        Authorization: `Bearer ${response.accessToken}`,
                     }
                 })
                 .then(res => {
                     setName(res.data.name);
-                    setCourses(res.data.courses);
+                    setTimetable(res.data.courses);
                     setProgress(100);
                     setNavigation(1);
                 })
@@ -43,7 +43,7 @@ export default function FetchingCourses(props) {
     return (
         <section className='pre-dashboard'>
             <div className="fetching-courses">
-                <h1>Fetching your courses</h1>
+                <h1>Please wait while we set up your timetable</h1>
                 <div className="loading-balls">
                     <div className="loading-ball"></div>
                     <div className="loading-ball"></div>

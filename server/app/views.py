@@ -1,9 +1,10 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from django.utils import timezone
 
 from .models import *
-from .utils import create_calendar
+from .utils import create_calendar, live_activity
 
 @api_view(["GET"])
 def get_user_courses(request):
@@ -105,3 +106,43 @@ def generate_calendar(request):
     data = request.data
     cal = create_calendar.generate_calendar(data)
     return Response(cal.serialize(), status=status.HTTP_200_OK)
+
+@api_view(["GET"])
+def live(request):
+    kerberos = request.kerberos
+    if not kerberos:
+        return Response("Kerberos not provided!", status=status.HTTP_400_BAD_REQUEST)
+    if not UserData.objects.filter(kerberos=kerberos).exists():
+        return Response("User not found!", status=status.HTTP_404_NOT_FOUND)
+    
+    req_time = timezone.now() + timezone.timedelta(hours=5, minutes=30)
+    req_time = req_time.replace(tzinfo=None)
+    req_time = timezone.datetime(2024, 7, 27, 11, 5, 0)
+    if req_time.second == 0:
+        req_time = req_time.replace(second=1)
+    w_day = f"{str(req_time.day).zfill(2)}{str(req_time.month).zfill(2)}"
+    
+    user = UserData.objects.get(kerberos=kerberos)
+
+    active_slots = live_activity.get_active_slots(req_time)
+    live_course, live_course_type, live_course_room = live_activity.get_live_user_class(user, active_slots)
+
+    if req_time.hour < 19 and req_time.hour >= 8:
+        for day, dates in create_calendar.working_days.items():
+            if w_day in dates:
+                print(dates)
+                free = live_activity.get_free_lh(active_slots) ; free = sorted(free)
+                break
+        else:
+            free = None
+    else: free = None
+
+    if live_course:
+        res = {
+            "courseCode": live_course.courseCode,
+            "courseType": live_course_type,
+            "room": live_course_room
+        }
+    else: res = None
+
+    return Response({"name": user.name, "free_lh": free, "live_course": res}, status=status.HTTP_200_OK)
