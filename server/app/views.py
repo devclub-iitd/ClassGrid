@@ -129,7 +129,6 @@ def live(request):
     if req_time.hour < 19 and req_time.hour >= 8:
         for day, dates in create_calendar.working_days.items():
             if w_day in dates:
-                print(dates)
                 free = live_activity.get_free_lh(active_slots) ; free = sorted(free)
                 break
         else:

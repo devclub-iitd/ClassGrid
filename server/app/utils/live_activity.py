@@ -94,23 +94,25 @@ def get_free_lh(active_slots):
 
     lecture_halls = get_all_lh()
 
-    lectures = CourseList.objects.filter(
-        Q(lectureRoom__in=lecture_halls) & Q(courseSlot__in=lecture_slots)
-    )
-    tutorials = CourseList.objects.filter(
-        Q(tutorialRoom__in=lecture_halls) & Q(courseSlot__in=tutorial_slots)
-    )
-    labs = CourseList.objects.filter(
-        Q(labRoom__in=lecture_halls) & Q(courseSlot__in=lab_slots)
-    )
+    lectures = CourseList.objects.filter(courseSlot__in=lecture_slots)
+    tutorials = CourseList.objects.filter(courseSlot__in=tutorial_slots)
+    labs = CourseList.objects.filter(courseSlot__in=lab_slots)
 
     for e in lectures:
-        if e.lectureRoom == "LH 410": print(e.courseCode)
-        lecture_halls.remove(e.lectureRoom) if e.lectureRoom in lecture_halls else None
+        if e.lectureRoom:
+            lectureRoomSplit = e.lectureRoom.split("/")
+            for room in lectureRoomSplit:
+                lecture_halls.remove(room) if room in lecture_halls else None
     for e in tutorials:
-        lecture_halls.remove(e.tutorialRoom) if e.tutorialRoom in lecture_halls else None
+        if e.tutorialRoom:
+            tutorialRoomSplit = e.tutorialRoom.split("/")
+            for room in tutorialRoomSplit:
+                lecture_halls.remove(room) if room in lecture_halls else None
     for e in labs:
-        lecture_halls.remove(e.labRoom) if e.labRoom in lecture_halls else None
+        if e.labRoom:
+            labRoomSplit = e.labRoom.split("/")
+            for room in labRoomSplit:
+                lecture_halls.remove(room) if room in lecture_halls else None
 
     return lecture_halls
 
