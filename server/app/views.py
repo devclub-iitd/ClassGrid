@@ -117,7 +117,6 @@ def live(request):
     
     req_time = timezone.now() + timezone.timedelta(hours=5, minutes=30)
     req_time = req_time.replace(tzinfo=None)
-    req_time = timezone.datetime(2024, 7, 27, 11, 5, 0)
     if req_time.second == 0:
         req_time = req_time.replace(second=1)
     w_day = f"{str(req_time.day).zfill(2)}{str(req_time.month).zfill(2)}"
