@@ -43,8 +43,8 @@ def check_course_update(last_course_update):
 
 def run():
     
-    curr_room_allotment = "https://timetable.iitd.ac.in/public/storage/uploads/schedule/Room_Allotment_Chart_2024_2025_1_1721841084.pdf"
-    last_course_update = "2024-07-25 13:33	"
+    curr_room_allotment = "https://timetable.iitd.ac.in/public/storage/uploads/schedule/Room_Allotment_Chart_2024_2025_1_1722083330.pdf"
+    last_course_update = "2024-07-29 14:05	"
 
     while True:
 
