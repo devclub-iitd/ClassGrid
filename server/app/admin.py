@@ -12,6 +12,7 @@ class CourseListAdmin(admin.ModelAdmin):
     list_display = ('semesterCode', 'courseCode', 'courseSlot', 'lectureRoom', 'tutorialRoom')
     search_fields = ('courseCode',)
     ordering = ('-semesterCode', 'courseCode', 'courseSlot')
+    list_filter = ('overrideRoomChange', 'overrideSlotChange')
 
 admin.site.register(UserData, UserDataAdmin)
 admin.site.register(SlotTiming)
