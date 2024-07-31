@@ -15,10 +15,18 @@ function App() {
 
     const [title, setTitle] = React.useState('ClassGrid by DevClub - Your Semester Timetable in 2 Minutes');
     const [progress, setProgress] = React.useState(0);
+    const [msFailAlert, setMsFailAlert] = React.useState(true);
 
     React.useEffect(() => {
         document.title = title;
     }, [title]);
+
+    React.useEffect(() => {
+        if (msFailAlert) {
+            alert("IMPORTANT: CSC, IIT Delhi servers are facing some issue with Microsoft in their authentication flow. Due to this, you might not be able to log in to ClassGrid. Please check back later. [Last Updated: 13:08, 31 July 2024 (IST)]");
+            setMsFailAlert(false);
+        }
+    }, [msFailAlert])
 
     return (
         <BrowserRouter>
