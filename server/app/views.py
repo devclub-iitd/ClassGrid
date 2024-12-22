@@ -29,7 +29,7 @@ def get_user_timetable(request):
     if not UserData.objects.filter(kerberos=kerberos).exists():
         return Response("User not found!", status=status.HTTP_404_NOT_FOUND)
     user = UserData.objects.get(kerberos=kerberos)
-    courses = user.user_courses.all()
+    courses = user.user_courses.filter(semesterCode="2402")
 
     days_map = {1: "Monday", 2: "Tuesday", 3: "Wednesday", 4: "Thursday", 5: "Friday"}
     l = []
