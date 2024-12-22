@@ -7,22 +7,24 @@ from .fetch_course_list import fetchCourseList, fix_course_lh
 requests.packages.urllib3.disable_warnings()
 
 def check_room_allotment(curr_room_allotment):
+    
     return False, curr_room_allotment
-    class_schedule_url = "https://timetable.iitd.ac.in/class-schedule"
-    response = requests.get(class_schedule_url, verify=False)
-    soup = BeautifulSoup(response.text, "html.parser")
-    links = soup.find_all("a")
-    for l in links:
-        if "Room Allotment Chart for Semester I, 2024-25" in l:
-            room_allotment = l
-            break
-    if room_allotment.get('href') == curr_room_allotment:
-        return False, curr_room_allotment
-    else:
-        with open(f"{settings.BASE_DIR}/app/utils/Room Allotment.pdf", "wb") as file:
-            response = requests.get(room_allotment.get('href'), verify=False)
-            file.write(response.content)
-        return True, room_allotment.get('href')
+    
+    # class_schedule_url = "https://timetable.iitd.ac.in/class-schedule"
+    # response = requests.get(class_schedule_url, verify=False)
+    # soup = BeautifulSoup(response.text, "html.parser")
+    # links = soup.find_all("a")
+    # for l in links:
+    #     if "Room Allotment Chart for Semester I, 2024-25" in l:
+    #         room_allotment = l
+    #         break
+    # if room_allotment.get('href') == curr_room_allotment:
+    #     return False, curr_room_allotment
+    # else:
+    #     with open(f"{settings.BASE_DIR}/app/utils/Room Allotment.pdf", "wb") as file:
+    #         response = requests.get(room_allotment.get('href'), verify=False)
+    #         file.write(response.content)
+    #     return True, room_allotment.get('href')
     
 def check_course_update(last_course_update):
     course_list_url = "https://ldapweb.iitd.ac.in/LDAP/courses/"
