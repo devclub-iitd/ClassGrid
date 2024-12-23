@@ -131,12 +131,18 @@
     cursor: pointer;
 }
 
-.live-free-lh {
+.new-container {
     width: 45%;
+    height: max-content;
+}
+
+.live-free-lh {
+    width: 100%;
     padding: 20px;
     background-color: white;
     border: 1px solid #475657;
     height: max-content;
+    margin-bottom: 20px;
 }
 
 .live-free-lh-heading {
@@ -172,6 +178,17 @@
     line-height: 150%;
 }
 
+.notifs {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.notifs li {
+    font-size: 16px;
+    color: #475657;
+    margin-top: 10px;
+}
+
 @media (max-width: 1200px) {
     .live-free-lh-rooms {
         grid-template-columns: repeat(3, 1fr);
@@ -188,7 +205,7 @@
     .m-dashboard {
         flex-direction: column;
     }
-    .live-course, .live-free-lh {
+    .live-course, .new-container {
         width: 100%;
     }
     .live-course {

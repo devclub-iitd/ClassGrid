@@ -17,3 +17,4 @@ class CourseListAdmin(admin.ModelAdmin):
 admin.site.register(UserData, UserDataAdmin)
 admin.site.register(SlotTiming)
 admin.site.register(CourseList, CourseListAdmin)
+admin.site.register(Notification)

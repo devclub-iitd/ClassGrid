@@ -1,8 +1,10 @@
+import re
+
 from django.utils import timezone
 from django.db.models import Q
 
 from .create_calendar import working_days
-from ..models import SlotTiming, CourseList
+from ..models import SlotTiming, CourseList, Notification
 
 def get_active_slots(time):
     curr_year = str(time.year)
@@ -140,3 +142,31 @@ def get_live_user_class(user, active_slots):
             return course, "Lab", course.labRoom
         
     return None, None, None
+
+def get_user_notifs(user):
+
+    courses = user.user_courses.filter(semesterCode="2402")
+    l = []
+    for course in courses:
+        l.append(course.courseCode)
+
+    notifs = Notification.objects.filter(semesterCode="2402").order_by("-added_at")
+    res = []
+
+    for notif in notifs:
+        
+        visibilities = notif.visibility.split(",")
+        
+        for v in visibilities:
+            
+            flag = False
+            
+            for course in l:
+                if re.match(v, course):
+                    res.append(notif.message)
+                    flag = True
+                    break
+
+            if flag: break
+
+    return res or None
