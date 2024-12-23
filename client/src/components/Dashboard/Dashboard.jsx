@@ -14,6 +14,7 @@ export default function Dashboard(props) {
     const [name, setName] = React.useState();
     const [freeLh, setFreeLh] = React.useState(null);
     const [liveCourse, setLiveCourse] = React.useState(null);
+    const [notifs, setNotifs] = React.useState(null);
 
     React.useEffect(() => {
 
@@ -32,6 +33,7 @@ export default function Dashboard(props) {
                         setName(res.data.name);
                         setFreeLh(res.data.free_lh);
                         setLiveCourse(res.data.live_course);
+                        setNotifs(res.data.notifs);
                         setProgress(100);
                     })
             })
@@ -72,19 +74,31 @@ export default function Dashboard(props) {
                     <span>You are currently logged in as {name}. <span onClick={msLogout}>Logout</span></span>
                 </div>
             </div>
-            <div className="live-free-lh">
-                <p className="live-free-lh-heading">The following rooms are currently free in the Lecture Hall Complex</p>
-                {freeLh ?
-                    <div className="live-free-lh-rooms">
-                        {freeLh.map((room, index) => {
-                            return (
-                                <div key={index} className="live-free-lh-room">
-                                    <p>{room}</p>
-                                </div>
-                            )
-                        })}
-                    </div>
-                    : <p className='live-free-lh-unavail'>This service is only available between 8:00 AM and 7:00 PM IST, and on working days!</p>}
+            <div className="new-container">
+                <div className="live-free-lh">
+                    <p className="live-free-lh-heading">The following rooms are currently free in the Lecture Hall Complex</p>
+                    {freeLh ?
+                        <div className="live-free-lh-rooms">
+                            {freeLh.map((room, index) => {
+                                return (
+                                    <div key={index} className="live-free-lh-room">
+                                        <p>{room}</p>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        : <p className='live-free-lh-unavail'>This service is only available between 8:00 AM and 7:00 PM IST, and on working days!</p>}
+                </div>
+                <div className="live-free-lh">
+                    <p className="live-free-lh-heading">Notifications</p>
+                    {notifs ?
+                        <ul className="notifs">
+                            {notifs.map((room, index) => {
+                                return <li dangerouslySetInnerHTML={{ __html: room }} />
+                            })}
+                        </ul>
+                        : <p className='live-free-lh-unavail'>No notifications found!</p>}
+                </div>
             </div>
         </div>
     )

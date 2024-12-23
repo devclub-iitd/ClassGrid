@@ -42,6 +42,18 @@ class CourseList(models.Model):
     def __str__(self):
         return f"{self.semesterCode}-{self.courseCode}"
     
+class Notification(models.Model):
+    
+    semesterCode = models.CharField(max_length=10, default="2402")
+    visibility = models.CharField(max_length=100)
+    message = models.TextField()
+    added_at = models.DateTimeField(auto_now_add=True, editable=True)
+
+    def __str__(self):
+        if len(self.message) > 50:
+            return self.message[:50] + "..."
+        return self.message
+    
 '''
 NOTE #1
 Timings will be represented as comma separated values for multiple days. Each day will be represented by a 9-digit number with the following specifications:

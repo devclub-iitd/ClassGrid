@@ -143,4 +143,7 @@ def live(request):
         }
     else: res = None
 
-    return Response({"name": user.name, "free_lh": free, "live_course": res}, status=status.HTTP_200_OK)
+    # notifs = ["You have a class in 5 minutes!", "Remember to submit your assignment by 11:59 PM!", "You have a quiz tomorrow! <a href='https://www.google.com'>Hi</a>"]
+    notifs = live_activity.get_user_notifs(user)
+
+    return Response({"name": user.name, "free_lh": free, "live_course": res, "notifs": notifs}, status=status.HTTP_200_OK)
