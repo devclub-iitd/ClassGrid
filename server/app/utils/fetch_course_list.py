@@ -5,7 +5,7 @@ import csv
 import requests
 from bs4 import BeautifulSoup
 
-# from .get_lh import get_room_number
+from .get_lh import get_room_number
 
 def isKerberos(kerberos):
     if len(kerberos) == 9 and kerberos[:2].isalpha() and kerberos[3:].isdigit():
@@ -67,8 +67,8 @@ def fetchCourseList(semesterCode):
                     courseObj.courseSlot = courseSlot
                 courseObj.students.clear() ; courseObj.save()
             else:
-                # lectureRoom = get_room_number(f"{courseCode}", "L")
-                # tutorialRoom = get_room_number(f"{courseCode}", "T")
+                lectureRoom = get_room_number(f"{courseCode}", "L")
+                tutorialRoom = get_room_number(f"{courseCode}", "T")
                 courseObj = CourseList.objects.create(semesterCode=semesterCode, courseCode=courseCode, totalCredits=totalCredits, creditStructure=creditStructure, courseSlot=courseSlot, lectureRoom=lectureRoom, tutorialRoom=tutorialRoom, labRoom=labRoom)
             for student in students:
                 if not isKerberos(student.text):
@@ -134,8 +134,8 @@ def fix_course_lh(semesterCode):
 
     courses = CourseList.objects.filter(semesterCode=semesterCode, overrideRoomChange=False).order_by('courseCode')
     for course in courses:
-        # course.lectureRoom = get_room_number(f"{course.courseCode}", "L")
-        # course.tutorialRoom = get_room_number(f"{course.courseCode}", "T")
+        course.lectureRoom = get_room_number(f"{course.courseCode}", "L")
+        course.tutorialRoom = get_room_number(f"{course.courseCode}", "T")
         course.save()
         logs.write_log(log_file, f"UPDATE: Course {course.courseCode} updated.")
     return {'status': 200, 'message': 'Course locations updated.'}
