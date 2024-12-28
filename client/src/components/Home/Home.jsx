@@ -40,7 +40,7 @@ export default function HomeComp() {
                             <li>T-10 reminders and Room Numbers for Lectures and Tutorials</li>
                         </ul>    
                     </p>
-                    <p>Please note that ClassGrid may not behave correctly for UG First Year courses. For any other issues you face while using ClassGrid, fill out <Link to="https://forms.gle/soGbPnr8toBRQAUz7" target='_blank'>this form</Link>.</p>
+                    <p>Please note that ClassGrid may not behave correctly for UG First Year courses. For any other issues you face while using ClassGrid, fill out <Link to="https://forms.gle/zadVEANZhCYS6gkv5" target='_blank'>this form</Link>.</p>
                     <button onClick={handleLogin}>
                         Get Started
                     </button>

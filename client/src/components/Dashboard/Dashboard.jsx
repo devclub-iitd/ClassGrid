@@ -70,7 +70,7 @@ export default function Dashboard(props) {
                 </div>
                 <div className="live-course-footer">
                     <button onClick={() => navigate('/timetable')}>View Full Semester Timetable</button>
-                    <p>Report any discrepancies <Link to="https://forms.gle/soGbPnr8toBRQAUz7" target='_blank'>here</Link></p>
+                    <p>Report any discrepancies <Link to="https://forms.gle/zadVEANZhCYS6gkv5" target='_blank'>here</Link></p>
                     <span>You are currently logged in as {name}. <span onClick={msLogout}>Logout</span></span>
                 </div>
             </div>
