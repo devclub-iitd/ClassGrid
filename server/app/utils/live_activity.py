@@ -95,10 +95,11 @@ def get_free_lh(active_slots):
     lab_slots = active_slots["lab"]
 
     lecture_halls = get_all_lh()
+    active_semester = "2402"
 
-    lectures = CourseList.objects.filter(courseSlot__in=lecture_slots)
-    tutorials = CourseList.objects.filter(courseSlot__in=tutorial_slots)
-    labs = CourseList.objects.filter(courseSlot__in=lab_slots)
+    lectures = CourseList.objects.filter(semesterCode=active_semester, courseSlot__in=lecture_slots)
+    tutorials = CourseList.objects.filter(semesterCode=active_semester, courseSlot__in=tutorial_slots)
+    labs = CourseList.objects.filter(semesterCode=active_semester, courseSlot__in=lab_slots)
 
     for e in lectures:
         if e.lectureRoom:
