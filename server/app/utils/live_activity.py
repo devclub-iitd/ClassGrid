@@ -120,7 +120,7 @@ def get_free_lh(active_slots):
 
 def get_live_user_class(user, active_slots):
 
-    courses = user.user_courses.all()
+    courses = user.user_courses.filter(semesterCode="2402")
     
     lecture_slots = active_slots["lecture"]
     tutorial_slots = active_slots["tutorial"]
