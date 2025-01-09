@@ -1,7 +1,5 @@
 import PyPDF2
 
-reader = PyPDF2.PdfReader("/home/ubuntu/ClassGrid/server/app/utils/Room Allotment.pdf")
-
 def get_table_number(page_text, course_code, _type):
     items = page_text.split('\n')[1:]
     checkpoint = -1
@@ -26,6 +24,9 @@ def get_rooms_on_page(page):
     return ret
 
 def get_room_number(course_code, _type):
+    
+    reader = PyPDF2.PdfReader("/home/ubuntu/ClassGrid/server/app/utils/Room Allotment.pdf")
+    
     for page in reader.pages[2:]:
         rooms_on_page = get_rooms_on_page(page)
         text = page.extract_text()
