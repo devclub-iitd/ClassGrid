@@ -44,8 +44,8 @@ def check_course_update(last_course_update):
 
 def run():
     
-    curr_room_allotment = "https://web.iitd.ac.in/~tti/timetable/Room_Allotment_Chart_2024_2025_2.pdf"
-    last_course_update = "2025-01-09 13:34  "
+    curr_room_allotment = "https://web.iitd.ac.in/~tti/timetable/Room_Allotment_Chart_2024_2025.pdf"
+    last_course_update = "2025-01-12 13:34  "
 
     while True:
 
