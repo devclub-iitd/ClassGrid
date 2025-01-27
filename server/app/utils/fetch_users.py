@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 def fetchUserGroups():
 
-    url = "http://internal.devclub.in/LDAP/dcs.html"
+    url = "http://internal.devclub.in/ldap/dcs.html"
     response = requests.get(url, verify=False, headers={'secret-key': settings.LDAP_KEY})
 
     if response.status_code != 200:
@@ -22,7 +22,7 @@ def fetchUserGroups():
 
         dept_name = dept["href"].split("/")[0]
 
-        url = f"http://internal.devclub.in/LDAP/{dept['href']}"
+        url = f"http://internal.devclub.in/ldap/{dept['href']}"
         response = requests.get(url, verify=False, headers={'secret-key': settings.LDAP_KEY})
 
         if response.status_code != 200:
@@ -45,7 +45,7 @@ def fetchUserData():
 
     log_file = logs.create_new_log_file()
 
-    url = "http://internal.devclub.in/LDAP/%s/%s.shtml"
+    url = "http://internal.devclub.in/ldap/%s/%s.shtml"
     
     user_groups = fetchUserGroups()
     if type(user_groups) == str:
