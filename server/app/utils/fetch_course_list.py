@@ -1,3 +1,4 @@
+from django.conf import settings
 from app.models import CourseList, SlotTiming, UserData
 from .. import logs
 
@@ -16,7 +17,7 @@ def fetchCourseList(semesterCode):
 
     log_file = logs.create_new_log_file()
 
-    url = "https://ldapweb.iitd.ac.in/LDAP/courses/%s-%s.shtml"
+    url = "http://internal.devclub.in/ldap/courses/%s-%s.shtml"
     
     with open("/home/ubuntu/ClassGrid/server/app/utils/Courses_Offered.csv", "r") as file:
 
@@ -44,7 +45,7 @@ def fetchCourseList(semesterCode):
 
             lectureRoom, tutorialRoom, labRoom = None, None, None
 
-            response = requests.get(url % (semesterCode, courseCode), verify=False)
+            response = requests.get(url % (semesterCode, courseCode), verify=False, headers={'secret-key': settings.LDAP_KEY})
             if response.status_code == 404 or lastCourse == courseCode[:6]:
                 if lastCourse == courseCode[:6]:
                     occuranceCount += 1
