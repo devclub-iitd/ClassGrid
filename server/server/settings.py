@@ -115,3 +115,5 @@ CORS_ORIGIN_WHITELIST = [
     'http://classgrid.devclub.iitd.tech',
     'https://classgrid.devclub.iitd.tech',
 ]
+
+LDAP_KEY = os.environ.get('LDAP_KEY')

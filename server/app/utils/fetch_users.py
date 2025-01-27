@@ -1,3 +1,4 @@
+from django.conf import settings
 from app.models import UserData
 from .. import logs
 
@@ -6,8 +7,8 @@ from bs4 import BeautifulSoup
 
 def fetchUserGroups():
 
-    url = "https://ldapweb.iitd.ac.in/LDAP/dcs.html"
-    response = requests.get(url, verify=False)
+    url = "http://internal.devclub.in/LDAP/dcs.html"
+    response = requests.get(url, verify=False, headers={'secret-key': settings.LDAP_KEY})
 
     if response.status_code != 200:
         return "Cannot connect to LDAP server!"
@@ -21,8 +22,8 @@ def fetchUserGroups():
 
         dept_name = dept["href"].split("/")[0]
 
-        url = f"https://ldapweb.iitd.ac.in/LDAP/{dept['href']}"
-        response = requests.get(url, verify=False)
+        url = f"http://internal.devclub.in/LDAP/{dept['href']}"
+        response = requests.get(url, verify=False, headers={'secret-key': settings.LDAP_KEY})
 
         if response.status_code != 200:
             return "Connection Lost!"
@@ -44,7 +45,7 @@ def fetchUserData():
 
     log_file = logs.create_new_log_file()
 
-    url = "https://ldapweb.iitd.ac.in/LDAP/%s/%s.shtml"
+    url = "http://internal.devclub.in/LDAP/%s/%s.shtml"
     
     user_groups = fetchUserGroups()
     if type(user_groups) == str:
@@ -60,7 +61,7 @@ def fetchUserData():
 
         for group in user_groups[dept]:
 
-            response = requests.get(url % (dept, group), verify=False)
+            response = requests.get(url % (dept, group), verify=False, headers={'secret-key': settings.LDAP_KEY})
             if response.status_code != 200:
                 logs.write_log(log_file, f"ERROR: Connection Lost!")
                 return "Connection Lost!"

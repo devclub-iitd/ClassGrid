@@ -25,8 +25,8 @@ def check_room_allotment(curr_room_allotment):
         return True, room_allotment.get('href')
     
 def check_course_update(last_course_update):
-    course_list_url = "https://ldapweb.iitd.ac.in/LDAP/courses/"
-    response = requests.get(course_list_url, verify=False)
+    course_list_url = "http://internal.devclub.in/LDAP/courses/"
+    response = requests.get(course_list_url, verify=False, headers={'secret-key': settings.LDAP_KEY})
     if response.status_code != 200:
         print("VPN not connected.")
         return False, last_course_update
