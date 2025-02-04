@@ -6,23 +6,19 @@ from .fetch_course_list import fetchCourseList, fix_course_lh
 
 requests.packages.urllib3.disable_warnings()
 
-def check_room_allotment(curr_room_allotment):
+def check_room_allotment():
+
+    response = requests.get("https://web.iitd.ac.in/~tti/timetable/Room_Allotment_Chart_2024_2025_2.pdf", verify=False)
+    if response.status_code != 200:
+        return False
     
-    class_schedule_url = "https://timetable.iitd.ac.in/class-schedule"
-    response = requests.get(class_schedule_url, verify=False)
-    soup = BeautifulSoup(response.text, "html.parser")
-    links = soup.find_all("a")
-    for l in links:
-        if "Room Allotment Chart for Semester II, 2024-25" in l:
-            room_allotment = l
-            break
-    if room_allotment.get('href') == curr_room_allotment:
-        return False, curr_room_allotment
-    else:
-        with open(f"{settings.BASE_DIR}/app/utils/Room Allotment.pdf", "wb") as file:
-            response = requests.get(room_allotment.get('href'), verify=False)
-            file.write(response.content)
-        return True, room_allotment.get('href')
+    if response.content == open(f"{settings.BASE_DIR}/app/utils/Room Allotment.pdf", "rb").read():
+        return False
+    
+    with open(f"{settings.BASE_DIR}/app/utils/Room Allotment.pdf", "wb") as file:
+        file.write(response.content)
+
+    return True
     
 def check_course_update(last_course_update):
     course_list_url = "http://internal.devclub.in/ldap/courses/"
@@ -43,14 +39,13 @@ def check_course_update(last_course_update):
         return True, course_update
 
 def run():
-    
-    curr_room_allotment = "https://web.iitd.ac.in/~tti/timetable/Room_Allotment_Chart_2024_2025.pdf"
-    last_course_update = "2025-01-12 13:34  "
+
+    last_course_update = ""
 
     while True:
 
         course_update_needed, last_course_update = check_course_update(last_course_update)
-        lh_update_needed, curr_room_allotment = check_room_allotment(curr_room_allotment)
+        lh_update_needed = check_room_allotment()
 
         if course_update_needed:
             print("Course update is needed.")
