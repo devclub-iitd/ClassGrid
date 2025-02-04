@@ -58,6 +58,10 @@ TEMPLATES = [
     },
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://classgrid.devclub.in'
+]
+
 WSGI_APPLICATION = 'server.wsgi.application'
 
 REST_FRAMEWORK = {
@@ -118,7 +122,7 @@ CORS_ORIGIN_WHITELIST = [
 LDAP_KEY = os.environ.get('LDAP_KEY')
 
 CRONJOBS = [
-    ('*/15 * * * *', 'app.utils.update.run'),
+    ('*/30 * * * *', 'app.utils.update.run'),
 ]
 
 AWS_STORAGE_BUCKET_NAME = "classgrid"
