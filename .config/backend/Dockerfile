@@ -1,5 +1,6 @@
 FROM python:3.12.4-slim
 
+RUN apt-get update
 RUN apt-get install -y cron
 
 WORKDIR /app
