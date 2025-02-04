@@ -13,7 +13,7 @@ COPY /server /app
 
 COPY /.config /app/.config
 
-RUN mkdir /app/app/logs
+RUN mkdir /app/logs
 
 RUN chmod +x .config/backend/entrypoint.sh
 
