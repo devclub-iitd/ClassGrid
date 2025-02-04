@@ -10,7 +10,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['classgrid.devclub.in']
+ALLOWED_HOSTS = ['classgrid.devclub.in', '*']
 
 INSTALLED_APPS = [
     # Default Django apps
@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     # Installed apps
     'rest_framework',
     'corsheaders',
+    'django_crontab',
     # Local apps
     'app',
 ]
@@ -115,3 +116,7 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 LDAP_KEY = os.environ.get('LDAP_KEY')
+
+CRONJOBS = [
+    ('*/10 * * * *', 'app.utils.update.run'),
+]
