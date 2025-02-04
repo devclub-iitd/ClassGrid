@@ -1,5 +1,5 @@
 from django.conf import settings
-import requests, time
+import requests
 from bs4 import BeautifulSoup
 from .fetch_users import fetchUserData
 from .fetch_course_list import fetchCourseList, fix_course_lh
@@ -46,25 +46,26 @@ def check_course_update(last_course_update):
 
 def run():
 
-    last_course_update = ""
+    try:
+        last_course_update = open(f"{settings.BASE_DIR}/app/utils/last_update.txt", "r").read()
+    except:
+        last_course_update = "0"
 
-    while True:
+    course_update_needed, last_course_update = check_course_update(last_course_update)
+    lh_update_needed = check_room_allotment()
 
-        course_update_needed, last_course_update = check_course_update(last_course_update)
-        lh_update_needed = check_room_allotment()
+    if course_update_needed:
+        print("Course update is needed.")
+        print("Refreshing user data.")
+        fetchUserData()
+        print("Refreshing course data.")
+        fetchCourseList("2402")
+        with open(f"{settings.BASE_DIR}/app/utils/last_update.txt", "w") as file:
+            file.write(last_course_update)
+    
+    if lh_update_needed:
+        print("LH update is needed.")
+        fix_course_lh("2402")
 
-        if course_update_needed:
-            print("Course update is needed.")
-            print("Refreshing user data.")
-            fetchUserData()
-            print("Refreshing course data.")
-            fetchCourseList("2402")
-        
-        if lh_update_needed:
-            print("LH update is needed.")
-            fix_course_lh("2402")
-
-        print("Update complete.")
-
-        time.sleep(60*10) # Check every 10 minutes
+    print("Update complete.")
 
