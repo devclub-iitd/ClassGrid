@@ -118,7 +118,7 @@ CORS_ORIGIN_WHITELIST = [
 LDAP_KEY = os.environ.get('LDAP_KEY')
 
 CRONJOBS = [
-    ('*/15 * * * * (source /opt/env || true) &&', 'app.utils.update.run'),
+    ('*/15 * * * *', 'app.utils.update.run'),
 ]
 
 AWS_STORAGE_BUCKET_NAME = "classgrid"
