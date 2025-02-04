@@ -13,8 +13,6 @@ COPY /server /app
 
 COPY /.config /app/.config
 
-RUN service cron start
-
 RUN mkdir /app/app/logs
 
 RUN chmod +x .config/backend/entrypoint.sh
