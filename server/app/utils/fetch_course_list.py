@@ -61,7 +61,7 @@ def fetchCourseList(semesterCode):
                 else:
                     occuranceCount = 1 ; lastCourse = courseCode[:6]
                 courseCode = lastCourse + chr(64+occuranceCount)
-                response = requests.get(url % (semesterCode, courseCode), verify=False)
+                response = requests.get(url % (semesterCode, courseCode), verify=False, headers={'secret-key': settings.LDAP_KEY})
                 if response.status_code == 404:
                     logs.write_log(log_file, f"ERROR: {courseCode} - Could not fetch course.")
                     continue
