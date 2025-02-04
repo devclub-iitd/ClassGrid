@@ -1,4 +1,8 @@
 import PyPDF2
+import boto3
+import io
+
+from django.conf import settings
 
 def get_table_number(page_text, course_code, _type):
     items = page_text.split('\n')[1:]
@@ -24,8 +28,14 @@ def get_rooms_on_page(page):
     return ret
 
 def get_room_number(course_code, _type):
-    
-    reader = PyPDF2.PdfReader("/home/ubuntu/ClassGrid/server/app/utils/Room Allotment.pdf")
+
+    s3 = boto3.client('s3', aws_access_key_id=settings.AWS_ACCESS_KEY_ID, aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY)
+    try:
+        obj = s3.get_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key="Room Allotment.pdf")
+    except s3.exceptions.NoSuchKey:
+        return None
+
+    reader = PyPDF2.PdfReader(io.BytesIO(obj['Body'].read()))
     
     for page in reader.pages[2:]:
         rooms_on_page = get_rooms_on_page(page)

@@ -6,6 +6,8 @@ import csv
 import requests
 from bs4 import BeautifulSoup
 
+import boto3, io
+
 from .get_lh import get_room_number
 
 def isKerberos(kerberos):
@@ -18,8 +20,15 @@ def fetchCourseList(semesterCode):
     log_file = logs.create_new_log_file()
 
     url = "http://internal.devclub.in/ldap/courses/%s-%s.shtml"
+
+    s3 = boto3.client('s3', aws_access_key_id=settings.AWS_ACCESS_KEY_ID, aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY)
+    try:
+        obj = s3.get_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key="Courses_Offered.csv")
+    except s3.exceptions.NoSuchKey:
+        logs.write_log(log_file, "ERROR: Courses_Offered.csv not found.")
+        return {'status': 404, 'message': 'Courses_Offered.csv not found.', 'log_file': log_file}
     
-    with open("/home/ubuntu/ClassGrid/server/app/utils/Courses_Offered.csv", "r") as file:
+    with io.StringIO(obj['Body'].read().decode('utf-8')) as file:
 
         reader = csv.reader(file)
         next(reader)
