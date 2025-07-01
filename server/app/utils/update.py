@@ -29,7 +29,7 @@ def check_course_update(last_course_update):
     soup = BeautifulSoup(response.text, "html.parser")
     links = soup.find_all("tr")
     for l in links:
-        if '2402-' in str(l):
+        if '2501-' in str(l):
             course_update = l
             break
     course_update = course_update.find_all("td", attrs={'align' : 'right'})[0].text
@@ -52,11 +52,11 @@ def run():
             print("Refreshing user data.")
             fetchUserData()
             print("Refreshing course data.")
-            fetchCourseList("2402")
+            fetchCourseList("2501")
         
         if lh_update_needed:
             print("LH update is needed.")
-            fix_course_lh("2402")
+            fix_course_lh("2501")
 
         print("Update complete.")
 

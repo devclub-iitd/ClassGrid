@@ -44,7 +44,7 @@ class CourseList(models.Model):
     
 class Notification(models.Model):
     
-    semesterCode = models.CharField(max_length=10, default="2402")
+    semesterCode = models.CharField(max_length=10, default="2501")
     visibility = models.CharField(max_length=100)
     message = models.TextField()
     added_at = models.DateTimeField(auto_now_add=True, editable=True)
