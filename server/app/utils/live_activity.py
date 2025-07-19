@@ -95,7 +95,7 @@ def get_free_lh(active_slots):
     lab_slots = active_slots["lab"]
 
     lecture_halls = get_all_lh()
-    active_semester = "2402"
+    active_semester = "2501"
 
     lectures = CourseList.objects.filter(semesterCode=active_semester, courseSlot__in=lecture_slots)
     tutorials = CourseList.objects.filter(semesterCode=active_semester, courseSlot__in=tutorial_slots)
@@ -121,7 +121,7 @@ def get_free_lh(active_slots):
 
 def get_live_user_class(user, active_slots):
 
-    courses = user.user_courses.filter(semesterCode="2402")
+    courses = user.user_courses.filter(semesterCode="2501")
     
     lecture_slots = active_slots["lecture"]
     tutorial_slots = active_slots["tutorial"]
@@ -146,12 +146,12 @@ def get_live_user_class(user, active_slots):
 
 def get_user_notifs(user):
 
-    courses = user.user_courses.filter(semesterCode="2402")
+    courses = user.user_courses.filter(semesterCode="2501")
     l = []
     for course in courses:
         l.append(course.courseCode)
 
-    notifs = Notification.objects.filter(semesterCode="2402").order_by("-added_at")
+    notifs = Notification.objects.filter(semesterCode="2501").order_by("-added_at")
     res = []
 
     for notif in notifs:
