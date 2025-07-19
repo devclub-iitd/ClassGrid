@@ -63,13 +63,13 @@ def run():
         print("Refreshing user data.")
         fetchUserData()
         print("Refreshing course data.")
-        fetchCourseList("2402")
+        fetchCourseList("2501")
         with open(f"{settings.BASE_DIR}/app/utils/last_update.txt", "w") as file:
             file.write(last_course_update)
     
     if lh_update_needed:
         print("LH update is needed.")
-        fix_course_lh("2402")
+        fix_course_lh("2501")
 
     print("Update complete.")
 
