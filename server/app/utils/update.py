@@ -8,11 +8,7 @@ requests.packages.urllib3.disable_warnings()
 
 def check_room_allotment():
 
-    return False
-
-    # Room Allotment Chart not published for semester 2501
-
-    response = requests.get("https://web.iitd.ac.in/~tti/timetable/Room_Allotment_Chart_2024_2025_2.pdf", verify=False)
+    response = requests.get("https://web.iitd.ac.in/~tti/timetable/Room_Allotment_Chart_2025_2026_1.pdf", verify=False)
     if response.status_code != 200:
         return False
     
